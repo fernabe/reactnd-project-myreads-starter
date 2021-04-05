@@ -1,8 +1,8 @@
 import React from 'react'
-
+import BookShelfSelector from './BookShelfSelector'
 const Book = (props) => {
-  const {data} = props;
-  console.log(data.id)
+  const { book } = props;
+ 
   return(
   	<li>
     <div className="book">
@@ -10,11 +10,15 @@ const Book = (props) => {
             <div 
     			className="book-cover" 
     			style={{ width: 128, height: 193, 
-    			backgroundImage:`url(${data.imageLinks.thumbnail})`}}/>
+    			backgroundImage:`url(${book.imageLinks.thumbnail})`}}/>	
+				<BookShelfSelector 
+					book={book}
+					changeBookShelf={props.changeBookShelf}
+				/>
 		</div>
-      	<div className="book-title">{data.title}</div>
+      	<div className="book-title">{book.title}</div>
      	<div className="book-authors">
-        	{data.authors ? data.authors.join(', ') : 'Unknown Author'}
+        	{book.authors ? book.authors.join(', ') : 'Unknown Author'}
       	</div>
     </div>
   </li>
