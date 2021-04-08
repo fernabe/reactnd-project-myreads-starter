@@ -14,7 +14,6 @@ class Search extends Component{
    
       	if(query.length > 0){
         	BooksAPI.search(query).then(books => {
-              	console.log(books)
         		if(books.error){
                 	this.setState({filteredBooks: []})
                 } else {
