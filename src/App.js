@@ -1,7 +1,9 @@
-import React from 'react'
-import BooksList from './BooksList'
-import * as BooksAPI from './BooksAPI'
-import './App.css'
+import React from 'react';
+import {Route} from "react-router-dom";
+import BooksList from './BooksList';
+import Search from './Search';
+import * as BooksAPI from './BooksAPI';
+import './App.css';
 
 class BooksApp extends React.Component {
   state = {
@@ -26,7 +28,6 @@ class BooksApp extends React.Component {
     }
 
 	changeBookShelf = (book, shelf) => {
-      console.log("change", book, shelf)
        BooksAPI.update(book,shelf).then(() => {
         book.shelf = shelf;
         this.setState(prevState => ({
@@ -40,9 +41,15 @@ class BooksApp extends React.Component {
 
   render() {
     return (
-      <div className="app">
- 		 <BooksList allBooks={this.state.allBooks} changeBookShelf={this.changeBookShelf}/>
-     </div>
+      	<div className="app">
+          <Route path="/search">
+               <Search booksWithShelf={this.state.allBooks} changeBookShelf={this.changeBookShelf}/>
+          </Route>
+
+          <Route path="/" exact={true}>
+              	<BooksList allBooks={this.state.allBooks} changeBookShelf={this.changeBookShelf}/>
+          </Route>
+		</div>
     )
   }
 }

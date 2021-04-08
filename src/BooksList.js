@@ -1,5 +1,6 @@
-import React, {Component} from 'react'
-import BooksShelf from "./BooksShelf"
+import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
+import BooksShelf from './BooksShelf';
 
 
 const bookshelves = [
@@ -28,6 +29,9 @@ class BooksList extends Component{
       				))}
       			</div>
       		</div>
+            <div className="open-search">
+            	<Link to="/search">Add a book</Link>
+            </div>
        </div>
     )
   }
